@@ -1,3 +1,5 @@
+/**importing all the packages and important stuff we need to get this on da road ayeeeee */
+
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -7,6 +9,8 @@ import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
+
+
 import { fileURLToPath } from "url";
 
 /* configurations - rdawg */
@@ -16,17 +20,17 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({policy : "cross-origin"}));
-app.use(morgan("common"));
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
+app.use(helmet());/**not sure abt this tbh */
+app.use(helmet.crossOriginResourcePolicy({policy : "cross-origin"})); /**not sure abt this tbh */
+app.use(morgan("common"));/**not sure abt this tbh */
+app.use(bodyParser.json({limit: "30mb", extended: true}));/**not sure abt this tbh */
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));/**not sure abt this tbh */
 app.use(cors());
-app.use("/assets", express.static(path.join(__dirname, 'public/assets')));
+app.use("/assets", express.static(path.join(__dirname, 'public/assets')));/**supposedly this is for paths */
 
 
 /* file storage -rdawg */
-
+/** helps divert the storage for the files on a local machine (can be configured to cloud???) */
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, "public/assets");
