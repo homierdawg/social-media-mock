@@ -41,6 +41,9 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage});
 
+/** route with files :P -  */
+app.post('/auth/register', upload.single("picture"), register);
+
 /* setting up dat mongoose -rdawg */
 const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL, {
