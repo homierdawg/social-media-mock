@@ -9,9 +9,9 @@ import multer from "multer";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
-
-
 import { fileURLToPath } from "url";
+import authRoutes from "./routes/auth.js";
+import { register} from "./Controllers/auth.js"
 
 /* configurations - rdawg */
 
@@ -43,6 +43,9 @@ const upload = multer({storage});
 
 /** route with files :P -  */
 app.post('/auth/register', upload.single("picture"), register);
+
+/** other ROUTES */
+app.use("/auth", authRoutes);
 
 /* setting up dat mongoose -rdawg */
 const PORT = process.env.PORT || 6001;
