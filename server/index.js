@@ -11,6 +11,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js"
 import { register} from "./Controllers/auth.js"
 
 /* configurations - rdawg */
@@ -46,6 +47,7 @@ app.post('/auth/register', upload.single("picture"), register);
 
 /** other ROUTES */
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 /* setting up dat mongoose -rdawg */
 const PORT = process.env.PORT || 6001;
