@@ -6,8 +6,10 @@ export const getUser = async (req, res) => {
         const { id } = req.params;
         // creates user from user id
         const user = await user.findById(id);
+        //user response
         res.status(200).json(user);
     } catch (err) {
+        //error response
         res.status(404).json({ message: err.message });
     }
 }
@@ -18,7 +20,7 @@ export const getUserFriends = async (req, res) => {
         const { id } = req.params;
         //creates user from id 
         const user = await user.findById(id);
-
+        //maps changes and formats it to be returned
         const friends = await Promise.all(
             user.friends.map((id) => user.findById(id))
         );
@@ -27,8 +29,10 @@ export const getUserFriends = async (req, res) => {
                 return { _id, firstName, LastName, occupation, location, picturePath };
             }
         );
+        //response
         req.status(200).json({ formattedFriends });
     } catch (err) {
+        //error response
         res.status(404).json({ message: err.message });
 
     }
@@ -46,14 +50,16 @@ export const addRemoveFriend = async (req, res) => {
             user.friends = user.friends.filter(id => id !== friendId);
             friend.friends = user.friends.filter(id => id !== id);
         }
-        //adds friend
+        //adds friend to user and user to friend list
         else {
             user.friends.push(friendId);
             friend.friends.push(id);
         }
+        //saves changes
         await user.save();
         await friend.save();
 
+        //maps changes and formats it to be returned
         const friends = await Promise.all(
             user.friends.map((id) => user.findById(id))
         );
@@ -62,10 +68,11 @@ export const addRemoveFriend = async (req, res) => {
                 return { _id, firstName, LastName, occupation, location, picturePath };
             }
         );
-
+        //response
         res.status(200).json({ formattedFriends });
 
     } catch (err) {
+        //error response
         res.status(404).json({ message: err.message });
 
     }
