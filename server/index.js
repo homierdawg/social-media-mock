@@ -14,7 +14,7 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import { register} from "./Controllers/auth.js";
-import { createPost } from "./Controllers/post.js";
+import { createPost } from "./Controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 
 

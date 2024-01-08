@@ -17,6 +17,6 @@ router.get("/:userId/posts", verifyToken, getUserPosts);
 //update
 router.patch("/:id/like", verifyToken, likePost);   
 
-
+export default router;
 //confused why this is here? maybe pasted from the freaking index.js smh
 // app.post("/posts", verifyToken, upload.single("picture"), createPost)
