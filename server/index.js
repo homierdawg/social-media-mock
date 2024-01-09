@@ -17,7 +17,7 @@ import { register} from "./Controllers/auth.js";
 import { createPost } from "./Controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 import User from "./models/user.js";
-import Post from "./models/uost.js";
+import Post from "./models/post.js";
 import { users, posts } from "./data/index.js";
 
 
